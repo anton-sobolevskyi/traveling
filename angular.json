@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "e1f39f62-8fd3-4578-b4e5-94aa1194d33f"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -64,6 +65,12 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/traveling/"
+          }
         }
       }
     }
