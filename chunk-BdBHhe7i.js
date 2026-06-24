@@ -1,0 +1,2 @@
+import {ak as fa}from'./main-V6VCRF27.js';var r=class i{transform(t,...e){let[m,a]=e;return `https://places.googleapis.com/v1/${t.name}/media?key=AIzaSyD-4eBdIyUGLVzcxGVZkk0GOgVInjAqNBA&maxHeightPx=${a??t.heightPx}&maxWidthPx=${m??t.widthPx}`}static \u0275fac=function(e){return new(e||i)};static \u0275pipe=fa({name:"placePhoto",type:i,pure:true})};
+export{r};
