@@ -1,0 +1,7 @@
+<div class="flex flex-col gap-2">
+  @for (place of places(); track place.id) {
+    <app-place-item [place]="place"></app-place-item>
+  } @empty {
+    <p class="text-gray-500 mx-auto">No places.</p>
+  }
+</div>

@@ -1,0 +1,43 @@
+<section class="flex gap-3 border border-gray-200 shadow rounded p-4 overflow-hidden">
+  @if (place().photos?.[0]; as photo) {
+    <div class="shrink-0">
+      <img
+        class="rounded object-cover w-20 h-20"
+        [ngSrc]="photo | placePhoto: 80 : 80"
+        alt=""
+        width="80"
+        height="80"
+      />
+    </div>
+  }
+
+  <div class="flex flex-col justify-between gap-3 grow">
+    <div class="flex flex-col gap-1">
+      <div class="grid grid-cols-[1fr_min-content] gap-4">
+        <h4 class="text-lg">
+          <a class="hover:underline hover:text-blue-400" [routerLink]="['/', 'place', place().id]">
+            {{ place().displayName?.text }}
+          </a>
+        </h4>
+
+        <ul class="flex gap-2">
+          <li
+            class="flex items-center justify-center gap-1 shrink-0 bg-blue-500 text-xs rounded-full text-grey-600 w-7 h-7"
+            [style.background-color]="place().iconBackgroundColor"
+          >
+            <img
+              class="w-4 h-4"
+              [ngSrc]="place().iconMaskBaseUri + '.svg'"
+              width="16"
+              height="16"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    @if (place().formattedAddress; as address) {
+      <p class="text-sm text-gray-400">{{ address }}</p>
+    }
+  </div>
+</section>

@@ -1,0 +1,7 @@
+<section class="flex flex-col gap-6 -mt-2">
+  <div class="sticky top-15 bg-white px-2 -mx-2 py-2">
+    <app-search-bar (value)="onSearchValueChange($event)"></app-search-bar>
+  </div>
+
+  <app-place-list [places]="places()" />
+</section>

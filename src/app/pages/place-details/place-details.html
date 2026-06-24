@@ -1,0 +1,78 @@
+@if (fetching()) {
+  Fetching data...
+} @else if (placeDetails(); as place) {
+  <div class="flex flex-col md:flex-row gap-5 overflow-hidden max-w-full mb-8">
+    <div class="flex flex-col gap-2 max-w-full w-90 shrink-0">
+      @if (activePhoto(); as photo) {
+        <img
+          class="object-cover rounded max-w-full w-90 h-90"
+          [ngSrc]="photo | placePhoto: 360 : 360"
+          alt=""
+          width="360"
+          height="360"
+        />
+      }
+
+      @if (place.photos?.length) {
+        <ul class="flex gap-2 overflow-x-auto w-full">
+          @for (photo of place.photos; track photo.name) {
+            <li class="shrink-0">
+              <button class="hover:cursor-pointer" type="button" (click)="activePhoto.set(photo)">
+                <img
+                  class="object-cover rounded w-30 h-30"
+                  [ngSrc]="photo | placePhoto: 120 : 120"
+                  alt=""
+                  width="120"
+                  height="120"
+                />
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="flex flex-col gap-2 grow overflow-hidden">
+      <h1 class="text-2xl">
+        {{ place.displayName?.text }}
+      </h1>
+
+      <span class="text-sm">Rating {{ place.rating | number: '1.2-2' }}</span>
+
+      <div class="flex gap-3 mt-2 mb-4">
+        @if (inWishList()) {
+          <button
+            class="border rounded px-4 py-2 hover:bg-gray-300 cursor-pointer"
+            type="button"
+            (click)="onRemoveFromWishList()"
+          >
+            Remove from wishlist
+          </button>
+        } @else {
+          <button
+            class="border rounded px-4 py-2 hover:bg-gray-300 cursor-pointer"
+            type="button"
+            (click)="onAddToWishList()"
+          >
+            Add to wishlist
+          </button>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1 mt-auto">
+        <h4 class="text-lg">Reviews:</h4>
+        <ul class="flex gap-4 overflow-x-auto py-2">
+          @for (review of place.reviews; track review.name) {
+            <li class="flex flex-col gap-2 rounded p-2 w-60 shrink-0 border border-gray-100">
+              <span class="text-sm text-blue-400">{{ review.authorAttribution.displayName }}</span>
+              <span class="line-clamp-3">{{ review.originalText?.text }}</span>
+              <span class="text-xs text-gray-400">{{ review.publishTime | date }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+} @else {
+  Unknown place.
+}

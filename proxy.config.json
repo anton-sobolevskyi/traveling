@@ -1,0 +1,7 @@
+{
+  "/v1": {
+    "target": "https://places.googleapis.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
